@@ -135,6 +135,38 @@ const QUEEN_HABITS = [
     title: "Unstoppable Warrior 🩹",
     card: "Survived a major accident, boarded her flight, and still smiled like a true champ.",
     about: "Faced a major accident and proved what real strength looks like. Even through the injury and pain, she boarded her flight with her head held high and sent a 'Just boarded' photo. Pure resilience, courage, and unstoppable warrior spirit! 💪🤍"
+  },
+  // HABIT 6
+  {
+    src: "/queen-habits/6.jpg",
+    era: "QUEEN HABIT 6",
+    title: "Mirror Selfie Queen 🪞",
+    card: "Polka dots, perfect pose, and classic mirror selfie magic.",
+    about: "No outfit check is complete without the mandatory, flawless mirror selfie! Standing stylishly in polka dots with the iconic hand-on-hip pose. Absolute fashion queen! ✨"
+  },
+  // HABIT 7
+  {
+    src: "/queen-habits/7.jpg",
+    era: "QUEEN HABIT 7",
+    title: "Professional Team Lunch 🍽️",
+    card: "From corporate meetings to grand team feasts.",
+    about: "Leading with warmth and confidence among colleagues. Bonding over delicious food, laughter, and great conversations. Work hard, feast like a queen! 💼🍷"
+  },
+  // HABIT 8
+  {
+    src: "/queen-habits/8.jpg",
+    era: "QUEEN HABIT 8",
+    title: "Energetic Tejamma 🤪",
+    card: "Unfiltered goofy energy, heart filters, and hilarious wake-up calls.",
+    about: "Sending silly late-night photos sticking her tongue out with heart outlines and 'wake up man' tags! Her goofy, energetic charm is pure serotonin and joy! 💖⚡"
+  },
+  // HABIT 9
+  {
+    src: "/queen-habits/9.jpg",
+    era: "QUEEN HABIT 9",
+    title: "Healthy Diet Queen 🥗",
+    card: "Fresh greens, Caesar salad, and working hard right by the laptop.",
+    about: "Fueling the body with healthy salads while grinding away on work tasks. Balancing fitness, nutrition, and career like a true queen! 🥗💻✨"
   }
 ];
 
