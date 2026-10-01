@@ -109,7 +109,7 @@ export default function App() {
   // RequestAnimationFrame lerp smoothing loop with rock-solid window.scrollY calculation
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const lerpFactor = isReducedMotion ? 1.0 : 0.08;
+    const lerpFactor = isReducedMotion ? 1.0 : 0.045;
 
     let animationFrameId;
 
@@ -247,18 +247,17 @@ export default function App() {
           />
         )}
 
-        {/* 2. 10 PHOTO FRAMES (Optimal Zoomed-Out Framing with Ambient Backdrop) */}
+        {/* 2. 10 PHOTO FRAMES (Unhurried Cinematic Fade & Plateaus) */}
         {CONFIG.PHOTOS.map((photo, i) => {
           const bgCenter = (i + 2) * beatLength;
           const dist = (progress - bgCenter) / beatLength;
 
           let opacity = 0;
-          if (i === 0 && progress < beatLength * 2) {
-            opacity = Math.max(0, (progress - beatLength * 1.3) / (beatLength * 0.7));
-          } else if (i === CONFIG.PHOTOS.length - 1 && progress >= (CONFIG.PHOTOS.length + 1.5) * beatLength) {
+          const absDist = Math.abs(dist);
+          if (absDist <= 0.4) {
             opacity = 1;
-          } else {
-            opacity = Math.max(0, Math.min(1, 1.25 - Math.abs(dist)));
+          } else if (absDist < 1.1) {
+            opacity = Math.max(0, 1 - (absDist - 0.4) / 0.7);
           }
 
           if (opacity <= 0.005) return null;
@@ -291,10 +290,10 @@ export default function App() {
         <div className="bg-dark-vignette" />
       </div>
 
-      {/* Main Tall Scroll Track */}
+      {/* Main Extended Tall Scroll Track for Slow Luxurious Pacing */}
       <div
         ref={trackRef}
-        style={{ height: `${totalBeats * 220}vh` }}
+        style={{ height: `${totalBeats * 380}vh` }}
       >
         {/* Sticky Full-Screen Viewport Stage */}
         <div className="stage-container">
@@ -374,12 +373,19 @@ export default function App() {
               let translateY = 30;
               let scale = 0.95;
 
-              if (Math.abs(dist) < 0.85) {
-                const norm = 1 - Math.abs(dist) / 0.85;
-                const easeNorm = easeOutCubic(norm);
-                storyOpacity = easeNorm;
-                translateY = 25 * (1 - easeNorm);
-                scale = 0.95 + 0.05 * easeNorm;
+              const absDist = Math.abs(dist);
+              if (absDist < 0.95) {
+                if (absDist <= 0.35) {
+                  storyOpacity = 1;
+                  translateY = 0;
+                  scale = 1.0;
+                } else {
+                  const norm = 1 - (absDist - 0.35) / 0.6;
+                  const easeNorm = easeOutCubic(Math.max(0, norm));
+                  storyOpacity = easeNorm;
+                  translateY = 25 * (1 - easeNorm);
+                  scale = 0.95 + 0.05 * easeNorm;
+                }
               }
 
               storyOpacity = storyOpacity * (1 - finaleRaw);
