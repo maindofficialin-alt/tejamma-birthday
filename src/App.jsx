@@ -102,8 +102,8 @@ export default function App() {
   const currentProgressRef = useRef(0);
   const [progress, setProgress] = useState(0);
 
-  // Total Beats: Beat 0 (Caution), Beat 1 (Intro Video), Beats 2-11 (Photos 1-10), Beat 12 (Finale)
-  const totalBeats = CONFIG.PHOTOS.length + 3;
+  // Total Beats: Beat 0 (Caution), Beat 1 (Intro Video), Beat 2 (Transition Gap), Beats 3-12 (Photos 1-10), Beat 13 (Finale)
+  const totalBeats = CONFIG.PHOTOS.length + 4;
   const beatLength = 1 / totalBeats;
 
   // RequestAnimationFrame lerp smoothing loop with rock-solid window.scrollY calculation
@@ -152,40 +152,40 @@ export default function App() {
   const cautionTranslateY = -50 * (progress / beatLength);
   const cautionBgOpacity = Math.max(0, Math.min(1, 1 - (progress - beatLength * 0.3) / (beatLength * 0.7)));
 
-  // 1. Intro Video Beat (Beat 1)
+  // 1. Intro Video Beat (Beat 1 - Ends cleanly before Transition Gap)
   const videoStart = beatLength * 0.6;
-  const videoEnd = beatLength * 2.3;
+  const videoEnd = beatLength * 1.85;
   let videoOpacity = 0;
   if (progress >= videoStart && progress < videoEnd) {
     if (progress < beatLength * 1.2) {
       videoOpacity = (progress - videoStart) / (beatLength * 0.6);
     } else {
-      videoOpacity = Math.max(0, 1 - (progress - beatLength * 1.2) / (beatLength * 1.1));
+      videoOpacity = Math.max(0, 1 - (progress - beatLength * 1.2) / (beatLength * 0.65));
     }
   }
 
   let introOpacity = 0;
-  const introStart = beatLength * 0.8;
-  const introEnd = beatLength * 2.2;
+  const introStart = beatLength * 0.75;
+  const introEnd = beatLength * 1.85;
   if (progress >= introStart && progress < introEnd) {
-    if (progress < beatLength * 1.3) {
-      introOpacity = (progress - introStart) / (beatLength * 0.5);
+    if (progress < beatLength * 1.2) {
+      introOpacity = (progress - introStart) / (beatLength * 0.45);
     } else {
-      introOpacity = Math.max(0, 1 - (progress - beatLength * 1.3) / (beatLength * 0.9));
+      introOpacity = Math.max(0, 1 - (progress - beatLength * 1.2) / (beatLength * 0.65));
     }
   }
-  const introTranslateY = -40 * Math.max(0, (progress - beatLength * 1.3) / (beatLength * 0.9));
+  const introTranslateY = -40 * Math.max(0, (progress - beatLength * 1.2) / (beatLength * 0.65));
 
-  // 2. Finale Beat (Beat 12)
-  const finaleStart = (CONFIG.PHOTOS.length + 1.8) * beatLength;
+  // 2. Finale Beat (Beat 13)
+  const finaleStart = (CONFIG.PHOTOS.length + 2.8) * beatLength;
   const finaleRaw = Math.max(0, Math.min(1, (progress - finaleStart) / (beatLength * 1.2)));
   const finaleEase = easeOutCubic(finaleRaw);
   const finaleOpacity = finaleEase;
   const finaleScale = 0.88 + 0.12 * finaleEase;
   const finaleTranslateY = 25 * (1 - finaleEase);
 
-  // Flying Celestial Unicorn trajectory during photo beats (Beats 2 to 11)
-  const photoStartProgress = beatLength * 1.6;
+  // Flying Celestial Unicorn trajectory during photo beats (Beats 3 to 12)
+  const photoStartProgress = beatLength * 2.4;
   const photoEndProgress = finaleStart;
   let unicornOpacity = 0;
   let unicornX = -25;
@@ -247,17 +247,17 @@ export default function App() {
           />
         )}
 
-        {/* 2. 10 PHOTO FRAMES (Unhurried Cinematic Fade & Plateaus) */}
+        {/* 2. 10 PHOTO FRAMES (Beats 3 to 12 - Fades in ONLY after Beat 2 Gap) */}
         {CONFIG.PHOTOS.map((photo, i) => {
-          const bgCenter = (i + 2) * beatLength;
+          const bgCenter = (i + 3) * beatLength;
           const dist = (progress - bgCenter) / beatLength;
 
           let opacity = 0;
           const absDist = Math.abs(dist);
           if (absDist <= 0.4) {
             opacity = 1;
-          } else if (absDist < 1.1) {
-            opacity = Math.max(0, 1 - (absDist - 0.4) / 0.7);
+          } else if (absDist < 1.0) {
+            opacity = Math.max(0, 1 - (absDist - 0.4) / 0.6);
           }
 
           if (opacity <= 0.005) return null;
@@ -366,7 +366,7 @@ export default function App() {
           {/* REVEALING STORY TEXT FOR EACH PHOTO */}
           <div className="story-moments-wrapper">
             {CONFIG.PHOTOS.map((photo, i) => {
-              const center = (i + 2) * beatLength;
+              const center = (i + 3) * beatLength;
               const dist = (progress - center) / beatLength;
 
               let storyOpacity = 0;
