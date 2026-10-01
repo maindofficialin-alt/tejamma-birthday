@@ -167,6 +167,14 @@ const QUEEN_HABITS = [
     title: "Healthy Diet Queen 🥗",
     card: "Fresh greens, Caesar salad, and working hard right by the laptop.",
     about: "Fueling the body with healthy salads while grinding away on work tasks. Balancing fitness, nutrition, and career like a true queen! 🥗💻✨"
+  },
+  // HABIT 10
+  {
+    src: "/queen-habits/10.jpg",
+    era: "QUEEN HABIT 10",
+    title: "Raising Standards & Universe Temp 🌊🔥",
+    card: "Raising standards, setting new bars, and raising the temperature of the entire universe.",
+    about: "Standing by the turquoise ocean waves with arms wide open and sunglasses on. She doesn't just raise standards and set high bars — she raises the temperature of the entire universe! Pure goddess energy 🌊🔥👑"
   }
 ];
 
