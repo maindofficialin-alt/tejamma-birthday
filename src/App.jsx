@@ -108,9 +108,9 @@ const QUEEN_HABITS = [
   {
     src: "/queen-habits/2.jpg",
     era: "QUEEN HABIT 2",
-    title: "Feeling Cute 🌆",
+    title: "City Lights & Royal Grace 🏙️",
     card: "NYC skyline glowing, but Tejamma glowing brighter.",
-    about: "Posing effortlessly against the Manhattan lights with hands under her chin. No matter how big the city is, she steals the entire spotlight. Cutest queen in the world! ✨"
+    about: "Posing effortlessly against the Manhattan lights with hands under her chin. No matter how big the city is, she steals the entire spotlight. Stunning, elegant, and timeless! ✨"
   },
   // HABIT 3
   {
