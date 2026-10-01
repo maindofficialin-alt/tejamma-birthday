@@ -1,0 +1,510 @@
+/* ==========================================================================
+   APPLE-STYLE EMBEDDED SCROLL EXPERIENCE (100% SCREEN FIT)
+   ========================================================================== */
+
+:root {
+  --bg-center: #4A1C3B;
+  --bg-edges: #2B1024;
+  --text-cream: #FBEFF2;
+  --accent-pink: #F2B8C6;
+
+  --font-headline: 'Fraunces', serif;
+  --font-handwritten: 'Caveat', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #120610;
+  color: var(--text-cream);
+  font-family: var(--font-headline);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  background-color: #120610;
+  color: var(--text-cream);
+  font-family: var(--font-headline);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fullscreen Background Media Stage */
+.bg-photos-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #120610;
+}
+
+/* 1. Fullscreen Video Media (100% Edge-to-Edge Full Screen for Video) */
+.fullscreen-video-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.96) saturate(1.08) contrast(1.05);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Flying Celestial Unicorn Layer (Glides across middle of screen during scroll) */
+.flying-unicorn-layer {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 25;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 15px 35px rgba(242, 184, 198, 0.75));
+}
+
+.unicorn-wrapper {
+  position: relative;
+  display: inline-block;
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.flying-unicorn-img {
+  width: clamp(150px, 24vw, 260px);
+  height: auto;
+  object-fit: contain;
+  transform-origin: 50% 60%;
+  animation: 
+    floatUnicorn 3.4s infinite ease-in-out,
+    realisticWingFlap 0.65s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  will-change: transform, filter;
+}
+
+/* Realistic 3D Wing Flap Motion: Upstroke vs Downstroke Power Sweep */
+@keyframes realisticWingFlap {
+  0% {
+    /* Upstroke: Wings high up, body lifted */
+    transform: perspective(800px) rotateX(32deg) rotateZ(-3deg) scaleY(1.10) scaleX(0.94) translateY(-15px);
+    filter: drop-shadow(0 24px 35px rgba(242, 184, 198, 0.9));
+  }
+  30% {
+    /* Transition sweep */
+    transform: perspective(800px) rotateX(6deg) rotateZ(0deg) scaleY(1.01) scaleX(0.99) translateY(-2px);
+    filter: drop-shadow(0 16px 25px rgba(242, 184, 198, 0.7));
+  }
+  60% {
+    /* Downstroke: Wings pushed forcefully downward */
+    transform: perspective(800px) rotateX(-28deg) rotateZ(3deg) scaleY(0.88) scaleX(1.06) translateY(12px);
+    filter: drop-shadow(0 8px 15px rgba(242, 184, 198, 0.45));
+  }
+  100% {
+    /* Return to top of upstroke */
+    transform: perspective(800px) rotateX(32deg) rotateZ(-3deg) scaleY(1.10) scaleX(0.94) translateY(-15px);
+    filter: drop-shadow(0 24px 35px rgba(242, 184, 198, 0.9));
+  }
+}
+
+@keyframes floatUnicorn {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+
+.unicorn-sparkles {
+  position: absolute;
+  right: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.sparkle-item {
+  font-size: 1.3rem;
+  animation: pulseSparkle 1.4s infinite ease-in-out alternate;
+}
+
+.sp1 { animation-delay: 0s; }
+.sp2 { animation-delay: 0.35s; }
+.sp3 { animation-delay: 0.7s; }
+
+.feather {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  animation: flutterFeather 1.8s infinite ease-out;
+}
+
+.f1 { animation-delay: 0.2s; }
+.f2 { animation-delay: 0.6s; }
+
+@keyframes flutterFeather {
+  0% { opacity: 0.9; transform: translate(0, 0) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translate(-45px, 25px) scale(0.4) rotate(45deg); }
+}
+
+@keyframes pulseSparkle {
+  0% { opacity: 0.3; transform: scale(0.8) translateY(0); }
+  100% { opacity: 1; transform: scale(1.35) translateY(-10px); }
+}
+
+/* Fullscreen Media Container */
+.fullscreen-media-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: opacity;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 1. Ambient Background Blur Fill (Fills viewport seamlessly) */
+.fullscreen-bg-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(36px) brightness(0.42) saturate(1.25);
+  will-change: transform;
+}
+
+/* 2. Crisp Full-Screen Media (Slightly Zoomed Out for Optimal Clarity & Framing) */
+.fullscreen-fit-media {
+  position: relative;
+  z-index: 2;
+  width: 94vw;
+  height: 92vh;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  filter: brightness(0.96) saturate(1.08) contrast(1.05);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  will-change: transform;
+}
+
+/* Ambient Subtle Vignette Overlay for Sharp Text Legibility */
+.bg-dark-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(12, 4, 12, 0.05) 0%, rgba(10, 4, 10, 0.38) 75%, rgba(8, 2, 8, 0.72) 100%),
+    linear-gradient(180deg, rgba(12, 4, 12, 0.35) 0%, rgba(12, 4, 12, 0.05) 50%, rgba(12, 4, 12, 0.6) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Sticky Full-Screen Stage */
+.stage-container {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Intro Beat Layer */
+.intro-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform, opacity;
+}
+
+/* 0. Caution Screen Layer (Beat 0 Warning Start) */
+.caution-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  pointer-events: none;
+  z-index: 22;
+  will-change: transform, opacity;
+}
+
+.caution-card {
+  position: relative;
+  width: min(90vw, 740px);
+  background: rgba(16, 6, 18, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(255, 215, 0, 0.5);
+  border-radius: 28px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 45px rgba(255, 215, 0, 0.22);
+  will-change: opacity, transform;
+}
+
+.caution-badge {
+  font-family: var(--font-headline);
+  font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  color: #FFD700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  background: rgba(40, 24, 8, 0.9);
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  padding: 8px 24px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+  display: inline-block;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.caution-text {
+  font-family: var(--font-headline);
+  font-size: clamp(1.2rem, 3.2vw, 1.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-cream);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+.caution-scroll-hint {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: pulseHint 2s infinite ease-in-out;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.intro-badge {
+  font-family: var(--font-headline);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-pink);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(18, 8, 22, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(242, 184, 198, 0.38);
+  padding: 8px 22px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.intro-name {
+  font-family: var(--font-handwritten);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  color: var(--accent-pink);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+}
+
+.intro-headline {
+  font-family: var(--font-headline);
+  font-size: clamp(2.6rem, 6.8vw, 5rem);
+  font-weight: 800;
+  color: var(--text-cream);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  max-width: 880px;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.9);
+}
+
+.intro-scroll-hint {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+  color: rgba(251, 239, 242, 0.92);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: pulseHint 2s infinite ease-in-out;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(5px); }
+}
+
+/* Embedded Story Card (Floating Overlay over Fullscreen Background) */
+.story-moments-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 32px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.embedded-story-card {
+  position: relative;
+  width: min(88vw, 680px);
+  background: rgba(18, 8, 22, 0.84);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(242, 184, 198, 0.4);
+  border-radius: 24px;
+  padding: 22px 32px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(242, 184, 198, 0.25);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.story-card-tag {
+  font-family: var(--font-headline);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-pink);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.story-card-title {
+  font-family: var(--font-headline);
+  font-size: clamp(1.7rem, 4.2vw, 2.6rem);
+  font-weight: 800;
+  color: #FFFDF8;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+}
+
+.story-card-subtitle {
+  font-family: var(--font-headline);
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--accent-pink);
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+}
+
+.story-card-about {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  color: var(--text-cream);
+  line-height: 1.35;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Finale Beat Layer */
+.finale-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 24px;
+  pointer-events: none;
+  z-index: 20;
+  will-change: transform, opacity;
+}
+
+.finale-headline {
+  font-family: var(--font-headline);
+  font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+  font-weight: 800;
+  color: var(--accent-pink);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 0 6px 35px rgba(0, 0, 0, 0.9);
+}
+
+.finale-message {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.45rem, 4vw, 2.3rem);
+  color: var(--text-cream);
+  max-width: 780px;
+  line-height: 1.55;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.85);
+  white-space: pre-line;
+}
+
+/* Fixed Bottom Progress Bar */
+.progress-bar-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 4px;
+  background: rgba(251, 239, 242, 0.15);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-pink), #FFD6E0);
+  box-shadow: 0 0 12px var(--accent-pink);
+  will-change: width;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .fullscreen-bg-blur, .fullscreen-fit-media, .embedded-story-card {
+    filter: none !important;
+  }
+}
