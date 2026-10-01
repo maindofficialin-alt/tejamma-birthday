@@ -483,6 +483,66 @@ body {
   white-space: pre-line;
 }
 
+/* Floating Mode Switcher Navbar */
+.mode-nav-bar {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 200;
+  display: flex;
+  gap: 8px;
+  background: rgba(18, 8, 22, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(242, 184, 198, 0.4);
+  padding: 6px 8px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.mode-nav-btn {
+  font-family: var(--font-headline);
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  font-weight: 700;
+  color: var(--text-cream);
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-nav-btn.active {
+  background: linear-gradient(135deg, var(--accent-pink), #FFD6E0);
+  color: #120610;
+  box-shadow: 0 4px 15px rgba(242, 184, 198, 0.5);
+}
+
+.queen-habits-cta-btn {
+  font-family: var(--font-headline);
+  font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+  font-weight: 800;
+  color: #120610;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 22px;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.queen-habits-cta-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.7);
+}
+
 /* Fixed Bottom Progress Bar */
 .progress-bar-container {
   position: fixed;

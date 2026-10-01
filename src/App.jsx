@@ -92,19 +92,79 @@ Beautiful. Gorgeous. Cutest. Prettiest. Hottest.
 And the damn sexiest woman in the entire universe. 🤍`
 };
 
+// ==========================================================================
+// QUEEN HABITS CONFIG (5 ICONIC MOMENTS FOR TEJAMMA)
+// ==========================================================================
+const QUEEN_HABITS = [
+  // HABIT 1
+  {
+    src: "/queen-habits/1.jpg",
+    era: "QUEEN HABIT 1",
+    title: "Annoyed Yet Patient 📱",
+    card: "The signature face when listening to my continuous blabber.",
+    about: "She rolls her eyes and pretends to be annoyed, but stays on call for hours listening with that irresistible, sweet smile. Chinni kopam, anantha premalu! 🤍"
+  },
+  // HABIT 2
+  {
+    src: "/queen-habits/2.jpg",
+    era: "QUEEN HABIT 2",
+    title: "Feeling Cute 🌆",
+    card: "NYC skyline glowing, but Tejamma glowing brighter.",
+    about: "Posing effortlessly against the Manhattan lights with hands under her chin. No matter how big the city is, she steals the entire spotlight. Cutest queen in the world! ✨"
+  },
+  // HABIT 3
+  {
+    src: "/queen-habits/3.jpg",
+    era: "QUEEN HABIT 3",
+    title: "Tejamma's Favorite Lake Spot 🌅",
+    card: "Sunset waters, quiet breeze, and pure elegance.",
+    about: "Her sanctuary by the lake railing. Taking in the golden hour, striking iconic poses, and finding peace in nature's beauty. Prashanthanga andamga untundi 🌊"
+  },
+  // HABIT 4
+  {
+    src: "/queen-habits/4.jpg",
+    era: "QUEEN HABIT 4",
+    title: "Skin Care Tejamma 🧖‍♀️",
+    card: "The sacred sheet mask ritual for that 24/7 royal glow.",
+    about: "Lying down with a sheet mask on, sending zero-effort hilarious selfies with 'Ntng'. Skincare is non-negotiable because glowing like a queen takes dedication! 🌸"
+  },
+  // HABIT 5
+  {
+    src: "/queen-habits/5.jpg",
+    era: "QUEEN HABIT 5",
+    title: "Injury Prone Warrior 🩹",
+    card: "Bumped forehead, airplane seat, still smiling like a champ.",
+    about: "Somehow manages to bump herself or collect random tiny battle scars, then sends a 'Just boarded' photo. A tough, fierce, unstoppable warrior who looks cute even with a band-aid! 💪🤍"
+  }
+];
+
 function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
 export default function App() {
+  const [mode, setMode] = useState('MAIN'); // 'MAIN' | 'QUEEN_HABITS'
   const trackRef = useRef(null);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
   const [progress, setProgress] = useState(0);
 
-  // Total Beats: Beat 0 (Caution), Beat 1 (Intro Video), Beat 2 (Transition Gap), Beats 3-12 (Photos 1-10), Beat 13 (Finale)
-  const totalBeats = CONFIG.PHOTOS.length + 4;
+  // Total Beats calculation based on active mode
+  // MAIN: Beat 0 (Caution), Beat 1 (Intro Video), Beat 2 (Transition Gap), Beats 3-12 (Photos 1-10), Beat 13 (Finale) -> 14
+  // QUEEN_HABITS: Beat 0 (Intro Badge), Beats 1-5 (Habits 1-5), Beat 6 (Queen Finale) -> 7
+  const isMain = mode === 'MAIN';
+  const photosList = isMain ? CONFIG.PHOTOS : QUEEN_HABITS;
+  const totalBeats = isMain ? photosList.length + 4 : photosList.length + 2;
   const beatLength = 1 / totalBeats;
+
+  const handleModeSwitch = (newMode) => {
+    if (newMode === mode) return;
+    setMode(newMode);
+    targetProgressRef.current = 0;
+    currentProgressRef.current = 0;
+    setProgress(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // RequestAnimationFrame lerp smoothing loop with rock-solid window.scrollY calculation
   useEffect(() => {
@@ -145,18 +205,21 @@ export default function App() {
       window.removeEventListener('resize', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [mode]);
 
+  // --------------------------------------------------------------------------
+  // MAIN MODE BEAT CALCULATIONS
+  // --------------------------------------------------------------------------
   // 0. Caution Beat (Beat 0)
-  const cautionOpacity = Math.max(0, Math.min(1, 1 - (progress - beatLength * 0.15) / (beatLength * 0.85)));
+  const cautionOpacity = isMain ? Math.max(0, Math.min(1, 1 - (progress - beatLength * 0.15) / (beatLength * 0.85))) : 0;
   const cautionTranslateY = -50 * (progress / beatLength);
-  const cautionBgOpacity = Math.max(0, Math.min(1, 1 - (progress - beatLength * 0.3) / (beatLength * 0.7)));
+  const cautionBgOpacity = isMain ? Math.max(0, Math.min(1, 1 - (progress - beatLength * 0.3) / (beatLength * 0.7))) : 0;
 
-  // 1. Intro Video Beat (Beat 1 - Ends cleanly before Transition Gap)
+  // 1. Intro Video Beat (Beat 1)
   const videoStart = beatLength * 0.6;
   const videoEnd = beatLength * 1.85;
   let videoOpacity = 0;
-  if (progress >= videoStart && progress < videoEnd) {
+  if (isMain && progress >= videoStart && progress < videoEnd) {
     if (progress < beatLength * 1.2) {
       videoOpacity = (progress - videoStart) / (beatLength * 0.6);
     } else {
@@ -167,7 +230,7 @@ export default function App() {
   let introOpacity = 0;
   const introStart = beatLength * 0.75;
   const introEnd = beatLength * 1.85;
-  if (progress >= introStart && progress < introEnd) {
+  if (isMain && progress >= introStart && progress < introEnd) {
     if (progress < beatLength * 1.2) {
       introOpacity = (progress - introStart) / (beatLength * 0.45);
     } else {
@@ -176,16 +239,28 @@ export default function App() {
   }
   const introTranslateY = -40 * Math.max(0, (progress - beatLength * 1.2) / (beatLength * 0.65));
 
-  // 2. Finale Beat (Beat 13)
-  const finaleStart = (CONFIG.PHOTOS.length + 2.8) * beatLength;
+  // --------------------------------------------------------------------------
+  // QUEEN HABITS MODE BEAT CALCULATIONS
+  // --------------------------------------------------------------------------
+  let queenIntroOpacity = 0;
+  if (!isMain && progress < beatLength * 1.4) {
+    queenIntroOpacity = Math.max(0, 1 - (progress - beatLength * 0.2) / (beatLength * 0.9));
+  }
+  const queenIntroTranslateY = -45 * (progress / beatLength);
+
+  // --------------------------------------------------------------------------
+  // FINALE BEAT CALCULATIONS
+  // --------------------------------------------------------------------------
+  const finaleStartOffset = isMain ? 2.8 : 0.8;
+  const finaleStart = (photosList.length + finaleStartOffset) * beatLength;
   const finaleRaw = Math.max(0, Math.min(1, (progress - finaleStart) / (beatLength * 1.2)));
   const finaleEase = easeOutCubic(finaleRaw);
   const finaleOpacity = finaleEase;
   const finaleScale = 0.88 + 0.12 * finaleEase;
   const finaleTranslateY = 25 * (1 - finaleEase);
 
-  // Flying Celestial Unicorn trajectory during photo beats (Beats 3 to 12)
-  const photoStartProgress = beatLength * 2.4;
+  // Flying Celestial Unicorn trajectory
+  const photoStartProgress = isMain ? beatLength * 2.4 : beatLength * 0.8;
   const photoEndProgress = finaleStart;
   let unicornOpacity = 0;
   let unicornX = -25;
@@ -205,11 +280,27 @@ export default function App() {
 
   return (
     <>
+      {/* Floating Top Mode Navigation Switcher */}
+      <div className="mode-nav-bar">
+        <button
+          className={`mode-nav-btn ${isMain ? 'active' : ''}`}
+          onClick={() => handleModeSwitch('MAIN')}
+        >
+          ✨ Birthday Journey
+        </button>
+        <button
+          className={`mode-nav-btn ${!isMain ? 'active' : ''}`}
+          onClick={() => handleModeSwitch('QUEEN_HABITS')}
+        >
+          👑 Queen Habits
+        </button>
+      </div>
+
       {/* Fullscreen Embedded Background Stage */}
       <div className="bg-photos-container">
         
-        {/* 0. CAUTION BACKGROUND IMAGE (Beat 0) */}
-        {progress < beatLength * 1.4 && (
+        {/* 0. CAUTION BACKGROUND IMAGE (Beat 0 - Main Mode) */}
+        {isMain && progress < beatLength * 1.4 && (
           <div
             className="fullscreen-media-container"
             style={{ opacity: cautionBgOpacity }}
@@ -231,8 +322,8 @@ export default function App() {
           </div>
         )}
 
-        {/* 1. INTRO VIDEO (100% Full Screen Edge-to-Edge with 4K Clarity) */}
-        {videoOpacity > 0.005 && (
+        {/* 1. INTRO VIDEO (100% Full Screen Edge-to-Edge - Main Mode) */}
+        {isMain && videoOpacity > 0.005 && (
           <video
             src="/intro-video-hd.mp4"
             autoPlay
@@ -247,9 +338,10 @@ export default function App() {
           />
         )}
 
-        {/* 2. 10 PHOTO FRAMES (Beats 3 to 12 - Fades in ONLY after Beat 2 Gap) */}
-        {CONFIG.PHOTOS.map((photo, i) => {
-          const bgCenter = (i + 3) * beatLength;
+        {/* 2. PHOTO FRAMES (Main or Queen Habits) */}
+        {photosList.map((photo, i) => {
+          const offsetBeat = isMain ? 3 : 1;
+          const bgCenter = (i + offsetBeat) * beatLength;
           const dist = (progress - bgCenter) / beatLength;
 
           let opacity = 0;
@@ -264,7 +356,7 @@ export default function App() {
 
           return (
             <div
-              key={`photo-frame-${i}`}
+              key={`${mode}-photo-frame-${i}`}
               className="fullscreen-media-container"
               style={{ opacity }}
             >
@@ -278,7 +370,7 @@ export default function App() {
               {/* Crisp Screen-Fitting Photo (Zero Edge Cropping) */}
               <img
                 src={photo.src}
-                alt={`Moment ${i + 1}`}
+                alt={photo.title}
                 className="fullscreen-fit-media"
                 loading={i < 2 ? "eager" : "lazy"}
               />
@@ -290,7 +382,7 @@ export default function App() {
         <div className="bg-dark-vignette" />
       </div>
 
-      {/* Main Extended Tall Scroll Track for Slow Luxurious Pacing */}
+      {/* Main Extended Tall Scroll Track */}
       <div
         ref={trackRef}
         style={{ height: `${totalBeats * 380}vh` }}
@@ -298,26 +390,48 @@ export default function App() {
         {/* Sticky Full-Screen Viewport Stage */}
         <div className="stage-container">
 
-          {/* 0. CAUTION WARNING START BEAT (Beat 0) */}
-          <div
-            className="caution-layer"
-            style={{
-              opacity: cautionOpacity,
-              transform: `translate3d(0, ${cautionTranslateY}px, 0)`,
-              display: cautionOpacity <= 0.005 ? 'none' : 'flex'
-            }}
-          >
-            <div className="caution-card">
-              <div className="caution-badge">⚠️ A Word of Caution</div>
-              <p className="caution-text">
-                "What lies beneath is the most potent drug known to mankind, stronger than gravity in its pull, swifter than light in reaching the mind. Proceed, dear reader, at your own peril."
-              </p>
-              <div className="caution-scroll-hint">
-                <span>Scroll down to proceed</span>
+          {/* 0. CAUTION WARNING START BEAT (Main Mode Only) */}
+          {isMain && (
+            <div
+              className="caution-layer"
+              style={{
+                opacity: cautionOpacity,
+                transform: `translate3d(0, ${cautionTranslateY}px, 0)`,
+                display: cautionOpacity <= 0.005 ? 'none' : 'flex'
+              }}
+            >
+              <div className="caution-card">
+                <div className="caution-badge">⚠️ A Word of Caution</div>
+                <p className="caution-text">
+                  "What lies beneath is the most potent drug known to mankind, stronger than gravity in its pull, swifter than light in reaching the mind. Proceed, dear reader, at your own peril."
+                </p>
+                <div className="caution-scroll-hint">
+                  <span>Scroll down to proceed</span>
+                  <span>↓</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 0. QUEEN HABITS INTRO CARD (Queen Habits Mode Only) */}
+          {!isMain && (
+            <div
+              className="intro-layer"
+              style={{
+                opacity: queenIntroOpacity,
+                transform: `translate3d(0, ${queenIntroTranslateY}px, 0)`,
+                display: queenIntroOpacity <= 0.005 ? 'none' : 'flex'
+              }}
+            >
+              <div className="intro-badge">👑 QUEEN HABITS & CHRONICLES ✨</div>
+              <div className="intro-name">For Tejamma 🤍</div>
+              <h1 className="intro-headline">The iconic, adorable & fierce daily moments</h1>
+              <div className="intro-scroll-hint">
+                <span>Scroll down to explore</span>
                 <span>↓</span>
               </div>
             </div>
-          </div>
+          )}
 
           {/* FLYING CELESTIAL UNICORN IN THE MIDDLE WHILE SCROLLING */}
           {unicornOpacity > 0.01 && (
@@ -345,28 +459,31 @@ export default function App() {
             </div>
           )}
 
-          {/* INTRO BEAT (Special Birthday Wishes Over Fullscreen Video) */}
-          <div
-            className="intro-layer"
-            style={{
-              opacity: introOpacity,
-              transform: `translate3d(0, ${introTranslateY}px, 0)`,
-              display: introOpacity <= 0.005 ? 'none' : 'flex'
-            }}
-          >
-            <div className="intro-badge">✨ HAPPY 26TH BIRTHDAY ✨</div>
-            <div className="intro-name">For {CONFIG.NAME} 🤍</div>
-            <h1 className="intro-headline">A few of my favourite moments</h1>
-            <div className="intro-scroll-hint">
-              <span>Scroll slowly</span>
-              <span>↓</span>
+          {/* INTRO BEAT (Main Mode Only) */}
+          {isMain && (
+            <div
+              className="intro-layer"
+              style={{
+                opacity: introOpacity,
+                transform: `translate3d(0, ${introTranslateY}px, 0)`,
+                display: introOpacity <= 0.005 ? 'none' : 'flex'
+              }}
+            >
+              <div className="intro-badge">✨ HAPPY 26TH BIRTHDAY ✨</div>
+              <div className="intro-name">For {CONFIG.NAME} 🤍</div>
+              <h1 className="intro-headline">A few of my favourite moments</h1>
+              <div className="intro-scroll-hint">
+                <span>Scroll slowly</span>
+                <span>↓</span>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* REVEALING STORY TEXT FOR EACH PHOTO */}
           <div className="story-moments-wrapper">
-            {CONFIG.PHOTOS.map((photo, i) => {
-              const center = (i + 3) * beatLength;
+            {photosList.map((photo, i) => {
+              const offsetBeat = isMain ? 3 : 1;
+              const center = (i + offsetBeat) * beatLength;
               const dist = (progress - center) / beatLength;
 
               let storyOpacity = 0;
@@ -394,7 +511,7 @@ export default function App() {
 
               return (
                 <div
-                  key={`story-${photo.src}-${i}`}
+                  key={`${mode}-story-${photo.src}-${i}`}
                   className="embedded-story-card"
                   style={{
                     opacity: storyOpacity,
@@ -419,8 +536,32 @@ export default function App() {
               display: finaleOpacity <= 0.005 ? 'none' : 'flex'
             }}
           >
-            <h2 className="finale-headline">Happy 26th, {CONFIG.NAME}</h2>
-            <p className="finale-message">{CONFIG.MESSAGE}</p>
+            {isMain ? (
+              <>
+                <h2 className="finale-headline">Happy 26th, {CONFIG.NAME}</h2>
+                <p className="finale-message">{CONFIG.MESSAGE}</p>
+                <button
+                  className="queen-habits-cta-btn"
+                  onClick={() => handleModeSwitch('QUEEN_HABITS')}
+                >
+                  👑 Explore Queen Habits ✨
+                </button>
+              </>
+            ) : (
+              <>
+                <h2 className="finale-headline">Long Live Queen Tejamma 👑</h2>
+                <p className="finale-message">
+                  {`Cutest, fiercest, funniest, and most precious human being in the universe.
+Forever your biggest fan! 🤍`}
+                </p>
+                <button
+                  className="queen-habits-cta-btn"
+                  onClick={() => handleModeSwitch('MAIN')}
+                >
+                  ✨ Back to Birthday Journey
+                </button>
+              </>
+            )}
           </div>
 
         </div>
