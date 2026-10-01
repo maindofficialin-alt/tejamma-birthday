@@ -176,6 +176,33 @@ const QUEEN_HABITS = [
     title: "Raising Standards & Universe Temp 🌊🔥",
     card: "Raising standards, setting new bars, and raising the temperature of the entire universe.",
     about: "Standing by the turquoise ocean waves with arms wide open and sunglasses on. She doesn't just raise standards and set high bars — she raises the temperature of the entire universe! Pure goddess energy 🌊🔥👑"
+  },
+  // HABIT 11 (LIVE VIDEO)
+  {
+    src: "/queen-habits/v1.mp4",
+    isVideo: true,
+    era: "QUEEN HABIT 11 • LIVE VIDEO 🎥",
+    title: "Unfiltered Serotonin & Radiant Charm ✨",
+    card: "Live in motion, endless laughter, and pure magnetic charm.",
+    about: "Watching Tejamma live in motion is pure joy! Her smile, her spontaneous expressions, and that effortless sparkle that brightens up every single frame. Absolute serotonin boost! 🤍⚡"
+  },
+  // HABIT 12 (LIVE VIDEO)
+  {
+    src: "/queen-habits/v2.mp4",
+    isVideo: true,
+    era: "QUEEN HABIT 12 • LIVE VIDEO 🎥",
+    title: "Queen in Motion 💃",
+    card: "Main character energy, playful turns, and instant mood lifter.",
+    about: "Bringing live energy to the screen with her adorable moves and killer confidence. Every second of this clip proves she owns the stage wherever she goes! 👑✨"
+  },
+  // HABIT 13 (LIVE VIDEO)
+  {
+    src: "/queen-habits/v3.mp4",
+    isVideo: true,
+    era: "QUEEN HABIT 13 • LIVE VIDEO 🎥",
+    title: "Adorable Everyday Sparkle 🌸",
+    card: "Live candid magic that makes your heart melt instantly.",
+    about: "No pose needed when your natural vibe is this cute. A priceless candid clip capturing Tejamma's sweetest live moments! Irresistibly adorable 💖🎥"
   }
 ];
 
@@ -211,7 +238,7 @@ export default function App() {
   // RequestAnimationFrame lerp smoothing loop with rock-solid window.scrollY calculation
   useEffect(() => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const lerpFactor = isReducedMotion ? 1.0 : 0.045;
+    const lerpFactor = isReducedMotion ? 1.0 : 0.085;
 
     let animationFrameId;
 
@@ -408,20 +435,42 @@ export default function App() {
               className="fullscreen-media-container"
               style={{ opacity }}
             >
-              {/* Soft Ambient Blurred Photo Background */}
-              <img
-                src={photo.src}
-                alt=""
-                className="fullscreen-bg-blur"
-              />
+              {/* Soft Ambient Blurred Photo / Video Background */}
+              {photo.isVideo || photo.src.endsWith('.mp4') ? (
+                <video
+                  src={photo.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="fullscreen-bg-blur"
+                />
+              ) : (
+                <img
+                  src={photo.src}
+                  alt=""
+                  className="fullscreen-bg-blur"
+                />
+              )}
 
-              {/* Crisp Screen-Fitting Photo (Zero Edge Cropping) */}
-              <img
-                src={photo.src}
-                alt={photo.title}
-                className={!isMain ? "fullscreen-fit-media queen-habits-fit-media" : "fullscreen-fit-media"}
-                loading={i < 2 ? "eager" : "lazy"}
-              />
+              {/* Crisp Screen-Fitting Photo or Video */}
+              {photo.isVideo || photo.src.endsWith('.mp4') ? (
+                <video
+                  src={photo.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={!isMain ? "fullscreen-fit-media queen-habits-fit-media" : "fullscreen-fit-media"}
+                />
+              ) : (
+                <img
+                  src={photo.src}
+                  alt={photo.title}
+                  className={!isMain ? "fullscreen-fit-media queen-habits-fit-media" : "fullscreen-fit-media"}
+                  loading={i < 2 ? "eager" : "lazy"}
+                />
+              )}
             </div>
           );
         })}
@@ -430,10 +479,10 @@ export default function App() {
         <div className="bg-dark-vignette" />
       </div>
 
-      {/* Main Extended Tall Scroll Track */}
+      {/* Main Extended Scroll Track */}
       <div
         ref={trackRef}
-        style={{ height: `${totalBeats * 380}vh` }}
+        style={{ height: `${totalBeats * 240}vh` }}
       >
         {/* Sticky Full-Screen Viewport Stage */}
         <div className="stage-container">

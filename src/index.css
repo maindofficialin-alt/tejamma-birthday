@@ -177,7 +177,10 @@ body {
   justify-content: center;
   overflow: hidden;
   will-change: opacity;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 1. Ambient Background Blur Fill (Fills viewport seamlessly) */
@@ -190,7 +193,8 @@ body {
   object-fit: cover;
   object-position: center;
   filter: blur(36px) brightness(0.42) saturate(1.25);
-  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* 2. Crisp Full-Screen Media (Slightly Zoomed Out for Optimal Clarity & Framing) */
@@ -205,7 +209,9 @@ body {
   filter: brightness(0.96) saturate(1.08) contrast(1.05);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
-  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Ambient Subtle Vignette Overlay for Sharp Text Legibility */
