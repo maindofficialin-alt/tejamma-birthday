@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import DearestLetterModal from './components/DearestLetterModal';
 
 // ==========================================================================
 // EDITABLE CONTENT CONFIG (EXACT 10 MOMENTS FOR TEJAMMA)
@@ -184,6 +185,7 @@ function easeOutCubic(t) {
 
 export default function App() {
   const [mode, setMode] = useState('MAIN'); // 'MAIN' | 'QUEEN_HABITS'
+  const [isLetterOpen, setIsLetterOpen] = useState(false);
   const trackRef = useRef(null);
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
@@ -334,6 +336,12 @@ export default function App() {
         >
           👑 Queen Habits
         </button>
+        <button
+          className="mode-nav-btn letter-nav-btn"
+          onClick={() => setIsLetterOpen(true)}
+        >
+          📜 Dearest Letter
+        </button>
       </div>
 
       {/* Fullscreen Embedded Background Stage */}
@@ -448,6 +456,13 @@ export default function App() {
                 <div className="caution-tribute-line">
                   🔥 Never say Tejamma is doing nothing — she explored every possibility, conquered every barrier, and is still conquering everything! 👑
                 </div>
+                <button
+                  className="letter-finale-btn"
+                  style={{ marginTop: '6px', marginBottom: '14px', fontSize: '0.9rem', padding: '10px 22px' }}
+                  onClick={() => setIsLetterOpen(true)}
+                >
+                  📜 Read "My Dearest Tejamma" Letter ✉️
+                </button>
                 <div className="caution-scroll-hint">
                   <span>Scroll down to proceed</span>
                   <span>↓</span>
@@ -585,12 +600,20 @@ export default function App() {
               <>
                 <h2 className="finale-headline">Happy 26th, {CONFIG.NAME}</h2>
                 <p className="finale-message">{CONFIG.MESSAGE}</p>
-                <button
-                  className="queen-habits-cta-btn"
-                  onClick={() => handleModeSwitch('QUEEN_HABITS')}
-                >
-                  👑 Explore Queen Habits ✨
-                </button>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <button
+                    className="letter-finale-btn"
+                    onClick={() => setIsLetterOpen(true)}
+                  >
+                    📜 Read "My Dearest Tejamma" Letter ✉️
+                  </button>
+                  <button
+                    className="queen-habits-cta-btn"
+                    onClick={() => handleModeSwitch('QUEEN_HABITS')}
+                  >
+                    👑 Explore Queen Habits ✨
+                  </button>
+                </div>
               </>
             ) : (
               <>
@@ -599,12 +622,20 @@ export default function App() {
                   {`Cutest, fiercest, funniest, and most precious human being in the universe.
 Forever your biggest fan! 🤍`}
                 </p>
-                <button
-                  className="queen-habits-cta-btn"
-                  onClick={() => handleModeSwitch('MAIN')}
-                >
-                  ✨ Back to Birthday Journey
-                </button>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <button
+                    className="letter-finale-btn"
+                    onClick={() => setIsLetterOpen(true)}
+                  >
+                    📜 Read "My Dearest Tejamma" Letter ✉️
+                  </button>
+                  <button
+                    className="queen-habits-cta-btn"
+                    onClick={() => handleModeSwitch('MAIN')}
+                  >
+                    ✨ Back to Birthday Journey
+                  </button>
+                </div>
               </>
             )}
           </div>
@@ -619,6 +650,12 @@ Forever your biggest fan! 🤍`}
           style={{ width: `${progress * 100}%` }}
         />
       </div>
+
+      {/* Parchment Letter Modal */}
+      <DearestLetterModal
+        isOpen={isLetterOpen}
+        onClose={() => setIsLetterOpen(false)}
+      />
     </>
   );
 }
