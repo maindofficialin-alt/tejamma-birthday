@@ -309,8 +309,31 @@ body {
   font-style: italic;
   color: var(--text-cream);
   line-height: 1.6;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+.caution-tribute-line {
+  font-family: var(--font-headline);
+  font-size: clamp(0.95rem, 2.3vw, 1.25rem);
+  font-weight: 700;
+  color: var(--accent-pink);
+  background: rgba(45, 18, 40, 0.75);
+  border: 1px solid rgba(242, 184, 198, 0.4);
+  padding: 12px 22px;
+  border-radius: 18px;
+  margin-bottom: 22px;
+  line-height: 1.5;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.intro-subheadline {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.45rem, 3.8vw, 2.2rem);
+  color: var(--accent-pink);
+  margin-bottom: 20px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
 }
 
 .caution-scroll-hint {

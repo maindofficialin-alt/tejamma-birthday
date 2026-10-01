@@ -437,6 +437,9 @@ export default function App() {
                 <p className="caution-text">
                   "What lies beneath is the most potent drug known to mankind, stronger than gravity in its pull, swifter than light in reaching the mind. Proceed, dear reader, at your own peril."
                 </p>
+                <div className="caution-tribute-line">
+                  🔥 Never say Tejamma is doing nothing — she explored every possibility, conquered every barrier, and is still conquering everything! 👑
+                </div>
                 <div className="caution-scroll-hint">
                   <span>Scroll down to proceed</span>
                   <span>↓</span>
@@ -458,6 +461,7 @@ export default function App() {
               <div className="intro-badge">👑 QUEEN HABITS & CHRONICLES ✨</div>
               <div className="intro-name">For Tejamma 🤍</div>
               <h1 className="intro-headline">The iconic, adorable & fierce daily moments</h1>
+              <div className="intro-subheadline">🔥 Never say Tejamma is doing nothing — she explored every possibility & is still conquering everything 👑</div>
               <div className="intro-scroll-hint">
                 <span>Scroll down to explore</span>
                 <span>↓</span>
@@ -503,7 +507,8 @@ export default function App() {
             >
               <div className="intro-badge">✨ HAPPY 26TH BIRTHDAY ✨</div>
               <div className="intro-name">For {CONFIG.NAME} 🤍</div>
-              <h1 className="intro-headline">A few of my favourite moments</h1>
+              <h1 className="intro-headline">Never say Tejamma is doing nothing — she explored every possibility and is still conquering everything 🔥</h1>
+              <div className="intro-subheadline">A tribute to her relentless spirit & my favourite moments 🤍</div>
               <div className="intro-scroll-hint">
                 <span>Scroll slowly</span>
                 <span>↓</span>
