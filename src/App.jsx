@@ -132,9 +132,9 @@ const QUEEN_HABITS = [
   {
     src: "/queen-habits/5.jpg",
     era: "QUEEN HABIT 5",
-    title: "Injury Prone Warrior 🩹",
-    card: "Bumped forehead, airplane seat, still smiling like a champ.",
-    about: "Somehow manages to bump herself or collect random tiny battle scars, then sends a 'Just boarded' photo. A tough, fierce, unstoppable warrior who looks cute even with a band-aid! 💪🤍"
+    title: "Unstoppable Warrior 🩹",
+    card: "Survived a major accident, boarded her flight, and still smiled like a true champ.",
+    about: "Faced a major accident and proved what real strength looks like. Even through the injury and pain, she boarded her flight with her head held high and sent a 'Just boarded' photo. Pure resilience, courage, and unstoppable warrior spirit! 💪🤍"
   }
 ];
 
