@@ -445,6 +445,44 @@ body {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
+/* Queen Habits Unobstructed Photo & Card Framing (Zero Overlap) */
+.queen-habits-fit-media {
+  max-height: 65vh !important;
+  object-position: center top !important;
+  transform: translateY(-6vh) !important;
+  filter: brightness(0.98) saturate(1.08) contrast(1.05) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7)) !important;
+}
+
+.queen-habits-story-card {
+  width: min(92vw, 640px) !important;
+  padding: 14px 24px !important;
+  background: rgba(14, 5, 16, 0.88) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(242, 184, 198, 0.25) !important;
+}
+
+.queen-habits-story-card .story-card-tag {
+  font-size: 0.78rem !important;
+  margin-bottom: 3px !important;
+}
+
+.queen-habits-story-card .story-card-title {
+  font-size: clamp(1.35rem, 3.4vw, 2.0rem) !important;
+  margin-bottom: 3px !important;
+}
+
+.queen-habits-story-card .story-card-subtitle {
+  font-size: clamp(0.92rem, 2.1vw, 1.15rem) !important;
+  margin-bottom: 5px !important;
+}
+
+.queen-habits-story-card .story-card-about {
+  font-size: clamp(1.15rem, 2.8vw, 1.6rem) !important;
+  line-height: 1.3 !important;
+}
+
 /* Finale Beat Layer */
 .finale-layer {
   position: absolute;

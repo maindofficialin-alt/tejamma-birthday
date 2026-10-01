@@ -371,7 +371,7 @@ export default function App() {
               <img
                 src={photo.src}
                 alt={photo.title}
-                className="fullscreen-fit-media"
+                className={!isMain ? "fullscreen-fit-media queen-habits-fit-media" : "fullscreen-fit-media"}
                 loading={i < 2 ? "eager" : "lazy"}
               />
             </div>
@@ -512,7 +512,7 @@ export default function App() {
               return (
                 <div
                   key={`${mode}-story-${photo.src}-${i}`}
-                  className="embedded-story-card"
+                  className={!isMain ? "embedded-story-card queen-habits-story-card" : "embedded-story-card"}
                   style={{
                     opacity: storyOpacity,
                     transform: `translate3d(0, ${translateY}px, 0) scale(${scale})`,
