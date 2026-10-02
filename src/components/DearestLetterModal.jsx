@@ -108,7 +108,7 @@ export default function DearestLetterModal({ isOpen, onClose }) {
 
             {/* Red Accent Telugu Closing & Signature */}
             <div className="letter-signature-container">
-              <div className="telugu-closing">Nuvvunte chaalu.</div>
+              <div className="telugu-closing">Nuvvuntey chalee.......</div>
               <div className="english-closing">Yours,</div>
               <div className="infinity-signature">
                 Infinity <span className="infinity-icon">♾️</span>
