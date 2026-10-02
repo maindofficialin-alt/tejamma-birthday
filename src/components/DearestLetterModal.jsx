@@ -83,6 +83,25 @@ export default function DearestLetterModal({ isOpen, onClose }) {
               And so, I make you this solemn promise. I shall take upon myself every responsibility, and I shall never hurt you, at any point in this life. On a most auspicious day, at a muhurtham blessed by the heavens, the very day you say yes, I will marry you, Tejamma.
             </p>
 
+            <p>
+              So far, you have worked hard every minute, hour, day, and year. You never wasted any time and made every single decision great — never doubt or regret any of them. I will always be standing right by your side, and I believe in Tejamma's decision-making with all my heart. Let's travel together through infinite miles, infinite years, and infinite time together. I want to spend every single second with you — I will not live for even a second without you.
+            </p>
+
+            <div className="song-lyrics-container">
+              <p className="song-declaration-line">
+                <span className="red-accent-text">I love you, Tejamma... 🤍</span>
+              </p>
+              <div className="telugu-lyrics-block">
+                finally కాబోతున్న కళ్యాణ మంత్రాలుగా<br />
+                వినబోతున్న సన్నాయి మేళాలుగా..<br />
+                ఓ సడే లేని అలజడి ఏదో ఎలా మదికి వినిపించిందో<br />
+                స్వరం లేని ఏ రాగంతో చెలిమికెలా స్వాగతమందో<br /><br />
+                ఇలాంటివేం తెలియకముందే<br />
+                మనం అనే కథానిక మొదలైందో<br />
+                మనం అనే కథానిక మొదలైందో ✨
+              </div>
+            </div>
+
             <p className="love-always-line">
               I love you, now and always.
             </p>

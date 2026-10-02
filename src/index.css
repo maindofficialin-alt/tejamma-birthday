@@ -787,6 +787,32 @@ body {
   margin-top: 24px;
 }
 
+.song-lyrics-container {
+  margin: 28px 0;
+  padding: 24px 20px;
+  background: rgba(179, 25, 50, 0.04);
+  border-left: 3px solid #B31932;
+  border-radius: 12px;
+}
+
+.song-declaration-line {
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(2rem, 4.5vw, 3rem) !important;
+  color: #B31932;
+  text-indent: 0 !important;
+  margin-bottom: 12px !important;
+}
+
+.telugu-lyrics-block {
+  font-family: var(--font-headline);
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #8B1E3F;
+  line-height: 1.8;
+  text-align: left;
+}
+
 .letter-signature-container {
   margin-top: 32px;
   display: flex;
