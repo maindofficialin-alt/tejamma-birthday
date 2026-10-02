@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DearestLetterModal from './components/DearestLetterModal';
+import StarryGalaxyBackground from './components/StarryGalaxyBackground';
 
 // ==========================================================================
 // EDITABLE CONTENT CONFIG (EXACT 10 MOMENTS FOR TEJAMMA)
@@ -373,6 +374,8 @@ export default function App() {
 
       {/* Fullscreen Embedded Background Stage */}
       <div className="bg-photos-container">
+        {/* Animated Live Starry Galaxy Canvas */}
+        <StarryGalaxyBackground />
         
         {/* 0. CAUTION BACKGROUND IMAGE (Beat 0 - Main Mode) */}
         {isMain && progress < beatLength * 1.4 && (
