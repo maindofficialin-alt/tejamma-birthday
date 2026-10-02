@@ -13,7 +13,7 @@ const CONFIG = {
       src: "/photos/1.jpg",
       era: "MOMENT 1",
       title: "Where It All Began 🌱",
-      card: "Sathupally's chinni star.",
+      card: "Sathupally's Bangaru Thalli.",
       about: "Born in Sathupally, Khammam, with tiny steps, curious eyes, and a heart full of wonder. Even as a chinnari, she was meant for something beautiful."
     },
     // PHOTO 2
