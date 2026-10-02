@@ -101,9 +101,9 @@ const QUEEN_HABITS = [
   {
     src: "/queen-habits/1.jpg",
     era: "QUEEN HABIT 1",
-    title: "Annoyed Yet Patient 📱",
-    card: "The signature face when listening to my continuous blabber.",
-    about: "She rolls her eyes and pretends to be annoyed, but stays on call for hours listening with that irresistible, sweet smile. Chinni kopam, anantha premalu! 🤍"
+    title: "Chinni Kopam, Anantha Premalu 📱🤍",
+    card: "Listening patiently with love to all my non-stop blabber.",
+    about: "She pretends to give a cute frown, but stays on call for hours listening to every word with that irresistible, sweet smile. Chinni kopam, anantha premalu! 🤍"
   },
   // HABIT 2
   {
