@@ -199,10 +199,10 @@ const QUEEN_HABITS = [
   {
     src: "/queen-habits/v3.mp4",
     isVideo: true,
-    era: "QUEEN HABIT 13 • LIVE VIDEO 🎥",
-    title: "Adorable Everyday Sparkle 🌸",
-    card: "Live candid magic that makes your heart melt instantly.",
-    about: "No pose needed when your natural vibe is this cute. A priceless candid clip capturing Tejamma's sweetest live moments! Irresistibly adorable 💖🎥"
+    era: "QUEEN HABIT 13 • BIRTHDAY BLESSINGS 👑🎂",
+    title: "Happy Birthday Queen Bangaram! 👑🎂",
+    card: "Wish you a very Happy Birthday Bangaram! May every single wish of yours come true.",
+    about: "Wish you a very Happy Birthday, Bangaram! 👑🎂 May every single dream and wish of yours be fulfilled, and please stay happy forever. Tejamma will get a high-paying job, Tejamma's H1B will get picked, Tejamma will get her Green Card, and Tejamma will always be happy! Varun is reaching you in December... thank you so much for your endless patience! ✈️🤍✨"
   }
 ];
 
