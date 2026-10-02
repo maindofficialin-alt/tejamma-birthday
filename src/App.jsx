@@ -647,8 +647,29 @@ export default function App() {
           >
             {isMain ? (
               <>
-                <h2 className="finale-headline">Happy 26th, {CONFIG.NAME}</h2>
+                <h2 className="finale-headline">Happy 26th, {CONFIG.NAME} 👑</h2>
                 <p className="finale-message">{CONFIG.MESSAGE}</p>
+                
+                {/* Dedicated Tribute & Telugu Song Lyrics Block */}
+                <div className="finale-tribute-box">
+                  <p className="finale-tribute-text">
+                    "So far, you worked hard every minute, hour, day, and year. You never wasted any time and made every decision great — never doubt or regret it! I will always be standing right by your side, and I believe in Tejamma's decision-making with all my heart. Let's travel together through infinite miles, infinite years, and infinite time together. I want to spend every single second with you — I will not live for even a second without you."
+                  </p>
+                  
+                  <div className="finale-song-block">
+                    <div className="song-header">I love you, Tejamma... 🤍</div>
+                    <div className="song-telugu-text">
+                      finally కాబోతున్న కళ్యాణ మంత్రాలుగా<br />
+                      వినబోతున్న సన్నాయి మేళాలుగా..<br />
+                      ఓ సడే లేని అలజడి ఏదో ఎలా మదికి వినిపించిందో<br />
+                      స్వరం లేని ఏ రాగంతో చెలిమికెలా స్వాగతమందో<br /><br />
+                      ఇలాంటివేం తెలియకముందే<br />
+                      మనం అనే కథానిక మొదలైందో<br />
+                      మనం అనే కథానిక మొదలైందో ✨
+                    </div>
+                  </div>
+                </div>
+
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
                   <button
                     className="letter-finale-btn"
@@ -671,6 +692,27 @@ export default function App() {
                   {`Cutest, fiercest, funniest, and most precious human being in the universe.
 Forever your biggest fan! 🤍`}
                 </p>
+
+                {/* Dedicated Tribute & Telugu Song Lyrics Block */}
+                <div className="finale-tribute-box">
+                  <p className="finale-tribute-text">
+                    "So far, you worked hard every minute, hour, day, and year. You never wasted any time and made every decision great — never doubt or regret it! I will always be standing right by your side, and I believe in Tejamma's decision-making with all my heart. Let's travel together through infinite miles, infinite years, and infinite time together. I want to spend every single second with you — I will not live for even a second without you."
+                  </p>
+                  
+                  <div className="finale-song-block">
+                    <div className="song-header">I love you, Tejamma... 🤍</div>
+                    <div className="song-telugu-text">
+                      finally కాబోతున్న కళ్యాణ మంత్రాలుగా<br />
+                      వినబోతున్న సన్నాయి మేళాలుగా..<br />
+                      ఓ సడే లేని అలజడి ఏదో ఎలా మదికి వినిపించిందో<br />
+                      స్వరం లేని ఏ రాగంతో చెలిమికెలా స్వాగతమందో<br /><br />
+                      ఇలాంటివేం తెలియకముందే<br />
+                      మనం అనే కథానిక మొదలైందో<br />
+                      మనం అనే కథానిక మొదలైందో ✨
+                    </div>
+                  </div>
+                </div>
+
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
                   <button
                     className="letter-finale-btn"
