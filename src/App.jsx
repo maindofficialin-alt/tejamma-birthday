@@ -511,13 +511,6 @@ export default function App() {
                 <div className="caution-tribute-line">
                   🔥 Never say Tejamma is doing nothing — she explored every possibility, conquered every barrier, and is still conquering everything! 👑
                 </div>
-                <button
-                  className="letter-finale-btn"
-                  style={{ marginTop: '6px', marginBottom: '14px', fontSize: '0.9rem', padding: '10px 22px' }}
-                  onClick={() => setIsLetterOpen(true)}
-                >
-                  📜 Read "My Dearest Tejamma" Letter ✉️
-                </button>
                 <div className="caution-scroll-hint">
                   <span>Scroll down to proceed</span>
                   <span>↓</span>
