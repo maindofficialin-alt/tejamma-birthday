@@ -329,24 +329,27 @@ export default function App() {
   const finaleScale = 0.88 + 0.12 * finaleEase;
   const finaleTranslateY = 25 * (1 - finaleEase);
 
-  // Flying Celestial Unicorn trajectory
-  const photoStartProgress = isMain ? beatLength * 2.4 : beatLength * 0.8;
-  const photoEndProgress = finaleStart;
+  // Flying Celestial Unicorn trajectory - Swift & quick magical appearance
+  const unicornStartBeat = isMain ? 7.8 : 5.2;
+  const unicornDurationBeats = 1.6;
+  const photoStartProgress = beatLength * unicornStartBeat;
+  const photoEndProgress = beatLength * (unicornStartBeat + unicornDurationBeats);
+
   let unicornOpacity = 0;
-  let unicornX = -25;
-  if (progress > photoStartProgress && progress < photoEndProgress) {
+  let unicornX = -30;
+  if (progress >= photoStartProgress && progress <= photoEndProgress) {
     const norm = (progress - photoStartProgress) / (photoEndProgress - photoStartProgress);
-    if (norm < 0.08) {
-      unicornOpacity = (norm / 0.08) * 0.95;
-    } else if (norm > 0.92) {
-      unicornOpacity = ((1 - norm) / 0.08) * 0.95;
+    if (norm < 0.15) {
+      unicornOpacity = (norm / 0.15) * 0.95;
+    } else if (norm > 0.85) {
+      unicornOpacity = ((1 - norm) / 0.15) * 0.95;
     } else {
       unicornOpacity = 0.95;
     }
-    unicornX = -25 + norm * 140;
+    unicornX = -30 + norm * 160;
   }
-  const unicornY = Math.sin(progress * 22) * 28;
-  const unicornRotate = Math.sin(progress * 14) * 6;
+  const unicornY = Math.sin(progress * 30) * 24;
+  const unicornRotate = Math.sin(progress * 20) * 5;
 
   return (
     <>
